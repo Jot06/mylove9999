@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Voce é a sorte 💖</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #ffdde1, #ee9ca7);
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      background-color: white;
+      padding: 30px 50px;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(255, 192, 203, 0.6);
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card h1 {
+      font-size: 1.8em;
+      color: #ff69b4;
+      margin: 0;
+      min-height: 50px;
+    }
+
+    button {
+      margin-top: 20px;
+      background-color: #ff69b4;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff1493;
+    }
+
+    .heart {
+      position: absolute;
+      color: pink;
+      font-size: 2em;
+      animation: floatUp 3s ease-in forwards;
+      z-index: 1;
+    }
+
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-200px) scale(1.5);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1 id="mensagem">Clique no botão ae bb 👇</h1>
+    <button onclick="mostrarMensagem()">Mostrar Mensagem</button>
+  </div>
+
+  <script>
+    function mostrarMensagem() {
+      const mensagem = "Você é a mais linda de todas, princesa 💖👑";
+      const el = document.getElementById("mensagem");
+      el.innerText = "";
+      let index = 0;
+
+      // Efeito máquina de escrever
+      const typeInterval = setInterval(() => {
+        el.innerText += mensagem[index];
+        index++;
+        if (index === mensagem.length) {
+          clearInterval(typeInterval);
+        }
+      }, 80);
+
+      // Criar corações animados
+      for (let i = 0; i < 20; i++) {
+        setTimeout(() => {
+          criarCoracao();
+        }, i * 150);
+      }
+    }
+
+    function criarCoracao() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerText = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.bottom = "0px";
+      heart.style.fontSize = (Math.random() * 10 + 15) + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
